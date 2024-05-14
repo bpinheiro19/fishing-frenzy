@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfdpgjpbll6t7"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
+[ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
+[ext_resource type="PackedScene" uid="uid://bc2f73op0uncl" path="res://Rock.tscn" id="2_r80ej"]
+
+[sub_resource type="Curve2D" id="Curve2D_gles0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 477, -3, 0, 0, 0, 0, 479, 123, 0, 0, 0, 0, 3, 123, 0, 0, 0, 0, 3, -1, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 1, -1)
+}
+point_count = 8
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4oa2v")
+RockScene = ExtResource("2_r80ej")
+
+[node name="Player" parent="." instance=ExtResource("1_273nw")]
+
+[node name="RockTimer" type="Timer" parent="."]
+
+[node name="FishTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="BigFishTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="RockPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gles0")
+
+[node name="RockSpawnLocation" type="PathFollow2D" parent="RockPath"]
+position = Vector2(1, -1)
+rotation = -0.00420166
+
+[connection signal="Hit" from="Player" to="." method="GameOver"]
+[connection signal="timeout" from="RockTimer" to="." method="OnRockTimerTimeout"]
+[connection signal="timeout" from="FishTimer" to="." method="OnFishTimerTimeout"]
+[connection signal="timeout" from="BigFishTimer" to="." method="OnBigFishTimerTimeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
+[connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
