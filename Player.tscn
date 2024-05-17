@@ -1,15 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bptgycrwxq1rb"]
+[gd_scene load_steps=6 format=3 uid="uid://bptgycrwxq1rb"]
 
 [ext_resource type="Texture2D" uid="uid://bhttaexwtp3yq" path="res://art/Player_left.png" id="1_3jw4l"]
 [ext_resource type="Script" path="res://Player.cs" id="1_l2wcf"]
-[ext_resource type="Texture2D" path="res://Player_right.png" id="2_43gwk"]
-[ext_resource type="Texture2D" uid="uid://bvlmigrssohrl" path="res://art/Player_right.png" id="2_ltu5v"]
+[ext_resource type="Texture2D" uid="uid://bvlmigrssohrl" path="res://art/Player_right.png" id="2_43gwk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrsof"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ltu5v")
+"texture": ExtResource("2_43gwk")
 }],
 "loop": true,
 "name": &"walk",

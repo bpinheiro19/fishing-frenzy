@@ -70,6 +70,7 @@ public partial class Main : Node
 		Rock rock = RockScene.Instantiate<Rock>();
 
 		// Choose a random location on Path2D.
+		//var rockSpawnLocation = GetNode<PathFollow2D>("Rockpath2D/PathFollow2D");
 		var rockSpawnLocation = GetNode<PathFollow2D>("RockPath/RockSpawnLocation");
 		rockSpawnLocation.ProgressRatio = GD.Randf();
 

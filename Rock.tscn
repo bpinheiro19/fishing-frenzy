@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bc2f73op0uncl"]
 
 [ext_resource type="Script" path="res://Rock.cs" id="1_lhlnd"]
-[ext_resource type="Texture2D" uid="uid://di4brvt8mv015" path="res://art/rock-rock-pixel-art-11563244369s0r338s63h.png" id="2_mc6jc"]
+[ext_resource type="Texture2D" uid="uid://dvx1otn68qkmr" path="res://art/rock.png" id="2_mf8pn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t0u1t"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mc6jc")
+"texture": ExtResource("2_mf8pn")
 }],
 "loop": true,
 "name": &"rock",
@@ -24,7 +24,6 @@ gravity_scale = 0.0
 script = ExtResource("1_lhlnd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_t0u1t")
 animation = &"rock"
 frame_progress = 0.499895
