@@ -41,7 +41,8 @@ public partial class Main : Node
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
-
+		var hud = GetNode<hud>("HUD");
+		hud.UpdateScore(_score);
 		GetNode<Timer>("StartTimer").Start();
 		GetNode<TextureRect>("startgamescreen").Hide();
 		GetNode<TextureRect>("gameoverscreen").Hide();
@@ -59,7 +60,7 @@ public partial class Main : Node
 	{
 		
 		_score++;
-		
+		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 
 	private void OnBigFishTimerTimeout()
