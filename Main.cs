@@ -30,17 +30,19 @@ public partial class Main : Node
 		GetNode<Timer>("FishTimer").Stop();
 		GetNode<Timer>("BigFishTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+		GetNode<hud>("HUD").ShowGameOver();
 	}
 	
 	public void NewGame()
 	{
 		_score = 0;
-
+		
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+		
 	}
 	
 	private void OnStartTimerTimeout()
@@ -53,7 +55,9 @@ public partial class Main : Node
 
 	private void OnScoreTimerTimeout()
 	{
+		
 		_score++;
+		
 	}
 
 	private void OnBigFishTimerTimeout()
@@ -122,7 +126,14 @@ public partial class Main : Node
 
 		// Spawn the mob by adding it to the Main scene.
 		AddChild(rock);
-	}
+		}
+		
+		
+		private void New_Game()
+		{var hud = GetNode<hud>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
+		}
 
 }
 
