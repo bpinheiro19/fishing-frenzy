@@ -18,6 +18,9 @@ animations = [{
 size = Vector2(34, 36)
 
 [node name="CheapFish" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("1_kjtjd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -26,7 +29,7 @@ scale = Vector2(1.94, 1.93)
 sprite_frames = SubResource("SpriteFrames_cx8i0")
 animation = &"CheapFishSwim"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CheapFishCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -12)
 shape = SubResource("RectangleShape2D_73iqp")
 
