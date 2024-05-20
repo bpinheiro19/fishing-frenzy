@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfdpgjpbll6t7"]
+
 
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
@@ -9,6 +9,18 @@
 [sub_resource type="Curve2D" id="Curve2D_pk31x"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 119.231, -1, 0, 0, 0, 0, 355.86, -1, 0, 0, 0, 0, 354.469, 65.0001, 0, 0, 0, 0, 119.231, 54.0001, 0, 0, 0, 0, 119.231, -1)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_6jbur"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 126, 1, 0, 0, 0, 0, 361, 1, 0, 0, 0, 0, 362, 15, 0, 0, 0, 0, 128, 13, 0, 0, 0, 0, 126, 1)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_wd1uu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 130, 1, 0, 0, 0, 0, 359, 1, 0, 0, 0, 0, 360, 14, 0, 0, 0, 0, 130, 14, 0, 0, 0, 0, 130, 1)
 }
 point_count = 5
 
@@ -49,6 +61,18 @@ curve = SubResource("Curve2D_pk31x")
 position = Vector2(119.231, -1)
 
 [node name="HUD" parent="." instance=ExtResource("5_mup65")]
+
+[node name="CheapFish" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6jbur")
+
+[node name="CheapFishSpawn" type="PathFollow2D" parent="CheapFish"]
+position = Vector2(126, 1)
+
+[node name="BigFish" type="Path2D" parent="."]
+curve = SubResource("Curve2D_wd1uu")
+
+[node name="BigFishSpawn" type="PathFollow2D" parent="BigFish"]
+position = Vector2(130, 1)
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="RockTimer" to="." method="OnRockTimerTimeout"]

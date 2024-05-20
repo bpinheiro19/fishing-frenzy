@@ -6,6 +6,10 @@ public partial class Main : Node
 	
 	[Export]
 	public PackedScene RockScene { get; set; }
+	
+	public PackedScene CheapFishScene { get; set; }
+	
+	public PackedScene BigFishScene { get; set; }
 
 	private int _score;
 	
@@ -23,6 +27,8 @@ public partial class Main : Node
 	private void GameOver()
 	{
 		GetNode<Timer>("RockTimer").Stop();
+		GetNode<Timer>("FishTimer").Stop();
+		GetNode<Timer>("BigFishTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
 	}
@@ -56,12 +62,44 @@ public partial class Main : Node
 
 	private void OnBigFishTimerTimeout()
 	{
-		// Replace with function body.
+// Create a new instance of the Mob scene.
+		BigFish bigfish = BigFishScene.Instantiate<BigFish>();
+
+		// Choose a random location on Path2D.
+		var BigFishSpawn = GetNode<PathFollow2D>("BigFish/BigFishSpawn");
+		BigFishSpawn.ProgressRatio = GD.Randf();
+
+		// Set the mob's position to a random location.
+		bigfish.Position = BigFishSpawn.Position;
+
+
+		// Choose the velocity.
+		var velocity = new Vector2(0, 150);
+		bigfish.LinearVelocity = velocity;
+
+		// Spawn the mob by adding it to the Main scene.
+		AddChild(bigfish);
 	}
 
 	private void OnFishTimerTimeout()
 	{
-		// Replace with function body.
+// Create a new instance of the Mob scene.
+		CheapFish cheapfish = CheapFishScene.Instantiate<CheapFish>();
+
+		// Choose a random location on Path2D.
+		var CheapFishSpawn = GetNode<PathFollow2D>("CheapFish/CheapFishSpawn");
+		CheapFishSpawn.ProgressRatio = GD.Randf();
+
+		// Set the mob's position to a random location.
+		cheapfish.Position = CheapFishSpawn.Position;
+
+
+		// Choose the velocity.
+		var velocity = new Vector2(0, 150);
+		cheapfish.LinearVelocity = velocity;
+
+		// Spawn the mob by adding it to the Main scene.
+		AddChild(cheapfish);
 	}
 
 	private void OnRockTimerTimeout()
