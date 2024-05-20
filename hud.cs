@@ -32,6 +32,7 @@ public partial class hud : CanvasLayer
 	await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
 	GetNode<Button>("StartButton").Show();
 	GetNode<Button>("QuitButton").Show();
+	GetNode<Button>("PauseButton").Hide();
 	}
 
 

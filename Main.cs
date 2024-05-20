@@ -133,11 +133,7 @@ public partial class Main : Node
 		}
 		
 		
-		private void New_Game()
-		{var hud = GetNode<hud>("HUD");
-		hud.UpdateScore(_score);
-		hud.ShowMessage("Get Ready!");
-		}
+
 
 }
 
