@@ -44,6 +44,7 @@ public partial class Main : Node
 		var hud = GetNode<hud>("HUD");
 		hud.UpdateScore(_score);
 		GetNode<Timer>("StartTimer").Start();
+		
 		GetNode<TextureRect>("startgamescreen").Hide();
 		GetNode<TextureRect>("gameoverscreen").Hide();
 	}

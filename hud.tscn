@@ -40,6 +40,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
+process_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -56,6 +57,7 @@ theme_override_font_sizes/font_size = 64
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="."]
+process_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -70,10 +72,62 @@ theme_override_fonts/font = ExtResource("2_qbyuf")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
+[node name="PauseButton" type="Button" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -93.0
+offset_bottom = 57.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_qbyuf")
+theme_override_font_sizes/font_size = 40
+text = "||"
+
+[node name="ResumeButton" type="Button" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -15.5
+offset_right = 35.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_qbyuf")
+theme_override_font_sizes/font_size = 70
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 116.0
+offset_right = 160.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_qbyuf")
+theme_override_font_sizes/font_size = 70
+text = "Restart
+"
+
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="PauseButton" to="." method="OnPauseButtonPressed"]
+[connection signal="pressed" from="ResumeButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="RestartButton" to="." method="OnRestartButtonPressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]

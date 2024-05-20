@@ -46,6 +46,8 @@ public partial class hud : CanvasLayer
 	GetNode<Button>("StartButton").Hide();
 	GetNode<Label>("Message").Hide();
 	GetNode<Button>("QuitButton").Hide();
+	GetNode<Button>("PauseButton").Show();
+	
 	EmitSignal(SignalName.StartGame);
 	}
 
@@ -60,13 +62,29 @@ public partial class hud : CanvasLayer
 	// Replace with function body.
 	}
 
-
+	public void OnPauseButtonPressed()
+	{
+	//	GetNode<Label>("Paused").Show();
+	GetNode<Button>("ResumeButton").Show();
+	//GetNode<Button>("RestartButton").Show();
+	GetNode<Button>("QuitButton").Show();
+	GetNode<Button>("PauseButton").Hide();
+		GetTree().Paused = true;
+		
+	// Replace with function body.
+	}
+	public void OnResumeButtonPressed()
+	{
+	GetNode<Button>("ResumeButton").Hide();
+	GetNode<Button>("PauseButton").Show();
+	//GetNode<Button>("RestartButton").Hide();
+	GetNode<Button>("QuitButton").Hide();
+		GetTree().Paused = false;
+	}
+	//private void OnRestartButtonPressed()
+	//{
+	//GetTree().ReloadCurrentScene();
+	//}
+	
+	
 }
-
-
-
-
-
-
-
-
