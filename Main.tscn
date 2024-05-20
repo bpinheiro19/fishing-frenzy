@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfdpgjpbll6t7"]
+[gd_scene load_steps=13 format=3 uid="uid://bfdpgjpbll6t7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://w5jje1iaqrmj" path="res://CheapFish.tscn" id="3_6bbgp"]
 [ext_resource type="PackedScene" uid="uid://doiwtivp7alye" path="res://BigFish.tscn" id="4_3wmim"]
 [ext_resource type="Texture2D" uid="uid://ca4ux7p0ys6pv" path="res://art/background_01.png" id="4_gehmt"]
-[ext_resource type="PackedScene" path="res://hud.tscn" id="5_mup65"]
+[ext_resource type="Texture2D" uid="uid://cehb5urppjfsj" path="res://art/game_over.png" id="5_fw5as"]
+[ext_resource type="PackedScene" uid="uid://bev76tri7cgvx" path="res://hud.tscn" id="5_mup65"]
+[ext_resource type="Texture2D" uid="uid://b1mm62081wabb" path="res://art/start_game.png" id="5_uqn7t"]
 
 [sub_resource type="Curve2D" id="Curve2D_pk31x"]
 _data = {
@@ -36,6 +38,16 @@ BigFishScene = ExtResource("4_3wmim")
 offset_right = 480.0
 offset_bottom = 720.0
 texture = ExtResource("4_gehmt")
+
+[node name="gameoverscreen" type="TextureRect" parent="."]
+offset_right = 481.0
+offset_bottom = 720.0
+texture = ExtResource("5_fw5as")
+
+[node name="startgamescreen" type="TextureRect" parent="."]
+offset_right = 481.0
+offset_bottom = 719.0
+texture = ExtResource("5_uqn7t")
 
 [node name="Player" parent="." instance=ExtResource("1_273nw")]
 

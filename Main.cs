@@ -16,7 +16,7 @@ public partial class Main : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		NewGame();
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +31,7 @@ public partial class Main : Node
 		GetNode<Timer>("BigFishTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
+		GetNode<TextureRect>("gameoverscreen").Show();
 	}
 	
 	public void NewGame()
@@ -42,7 +43,8 @@ public partial class Main : Node
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
-		
+		GetNode<TextureRect>("startgamescreen").Hide();
+		GetNode<TextureRect>("gameoverscreen").Hide();
 	}
 	
 	private void OnStartTimerTimeout()

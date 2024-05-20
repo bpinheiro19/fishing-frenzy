@@ -20,17 +20,18 @@ public partial class hud : CanvasLayer
 
 	async public void ShowGameOver()
 	{
-	ShowMessage("Game Over");
+	ShowMessage("Perdeste");
 
 	var messageTimer = GetNode<Timer>("MessageTimer");
 	await ToSignal(messageTimer, Timer.SignalName.Timeout);
 
 	var message = GetNode<Label>("Message");
-	message.Text = "You lost!";
+	message.Text = "Seu pato!";
 	message.Show();
 
 	await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
 	GetNode<Button>("StartButton").Show();
+	GetNode<Button>("QuitButton").Show();
 	}
 
 
@@ -44,6 +45,7 @@ public partial class hud : CanvasLayer
 	{
 	GetNode<Button>("StartButton").Hide();
 	GetNode<Label>("Message").Hide();
+	GetNode<Button>("QuitButton").Hide();
 	EmitSignal(SignalName.StartGame);
 	}
 
@@ -52,6 +54,19 @@ public partial class hud : CanvasLayer
 	GetNode<Label>("Message").Hide();
 	}
 
+	private void OnQuitButtonPressed()
+	{
+		GetTree().Quit();
+	// Replace with function body.
+	}
+
+
 }
+
+
+
+
+
+
 
 
