@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfdpgjpbll6t7"]
+[gd_scene load_steps=7 format=3 uid="uid://bfdpgjpbll6t7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
 [ext_resource type="PackedScene" uid="uid://bc2f73op0uncl" path="res://Rock.tscn" id="2_r80ej"]
 [ext_resource type="Texture2D" uid="uid://ca4ux7p0ys6pv" path="res://art/background_01.png" id="4_gehmt"]
+[ext_resource type="PackedScene" uid="uid://bev76tri7cgvx" path="res://hud.tscn" id="5_mup65"]
 
 [sub_resource type="Curve2D" id="Curve2D_pk31x"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 90, 2, 0, 0, 0, 0, 406, -1, 0, 0, 0, 0, 405.97, 59.5, 0, 0, 0, 0, 90, 59.5, 0, 0, 0, 0, 90, 2)
+"points": PackedVector2Array(0, 0, 0, 0, 119.231, -1, 0, 0, 0, 0, 355.86, -1, 0, 0, 0, 0, 354.469, 65.0001, 0, 0, 0, 0, 119.231, 54.0001, 0, 0, 0, 0, 119.231, -1)
 }
 point_count = 5
 
@@ -45,8 +46,9 @@ scale = Vector2(0.718422, 0.181818)
 curve = SubResource("Curve2D_pk31x")
 
 [node name="RockSpawnLocation" type="PathFollow2D" parent="RockPath"]
-position = Vector2(90, 2)
-rotation = -0.00949339
+position = Vector2(119.231, -1)
+
+[node name="HUD" parent="." instance=ExtResource("5_mup65")]
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="RockTimer" to="." method="OnRockTimerTimeout"]
@@ -54,3 +56,4 @@ rotation = -0.00949339
 [connection signal="timeout" from="BigFishTimer" to="." method="OnBigFishTimerTimeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
+[connection signal="StartGame" from="HUD" to="." method="NewGame"]
