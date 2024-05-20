@@ -6,9 +6,9 @@ public partial class Main : Node
 	
 	[Export]
 	public PackedScene RockScene { get; set; }
-	
+	[Export]
 	public PackedScene CheapFishScene { get; set; }
-	
+	[Export]
 	public PackedScene BigFishScene { get; set; }
 
 	private int _score;

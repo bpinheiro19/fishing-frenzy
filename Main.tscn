@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfdpgjpbll6t7"]
+[gd_scene load_steps=11 format=3 uid="uid://bfdpgjpbll6t7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
 [ext_resource type="PackedScene" uid="uid://bc2f73op0uncl" path="res://Rock.tscn" id="2_r80ej"]
+[ext_resource type="PackedScene" uid="uid://w5jje1iaqrmj" path="res://CheapFish.tscn" id="3_6bbgp"]
+[ext_resource type="PackedScene" uid="uid://doiwtivp7alye" path="res://BigFish.tscn" id="4_3wmim"]
 [ext_resource type="Texture2D" uid="uid://ca4ux7p0ys6pv" path="res://art/background_01.png" id="4_gehmt"]
-[ext_resource type="PackedScene" uid="uid://bev76tri7cgvx" path="res://hud.tscn" id="5_mup65"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="5_mup65"]
 
 [sub_resource type="Curve2D" id="Curve2D_pk31x"]
 _data = {
@@ -27,6 +29,8 @@ point_count = 5
 [node name="Main" type="Node"]
 script = ExtResource("1_4oa2v")
 RockScene = ExtResource("2_r80ej")
+CheapFishScene = ExtResource("3_6bbgp")
+BigFishScene = ExtResource("4_3wmim")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 480.0
