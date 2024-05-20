@@ -50,6 +50,7 @@ public partial class hud : CanvasLayer
 	GetNode<Button>("PauseButton").Show();
 	
 	EmitSignal(SignalName.StartGame);
+	GetTree().Paused = false;
 	}
 
 	private void OnMessageTimerTimeout()
@@ -67,7 +68,7 @@ public partial class hud : CanvasLayer
 	{
 	//	GetNode<Label>("Paused").Show();
 	GetNode<Button>("ResumeButton").Show();
-	//GetNode<Button>("RestartButton").Show();
+	GetNode<Button>("RestartButton").Show();
 	GetNode<Button>("QuitButton").Show();
 	GetNode<Button>("PauseButton").Hide();
 		GetTree().Paused = true;
@@ -78,14 +79,18 @@ public partial class hud : CanvasLayer
 	{
 	GetNode<Button>("ResumeButton").Hide();
 	GetNode<Button>("PauseButton").Show();
-	//GetNode<Button>("RestartButton").Hide();
+	GetNode<Button>("RestartButton").Hide();
 	GetNode<Button>("QuitButton").Hide();
 		GetTree().Paused = false;
 	}
-	//private void OnRestartButtonPressed()
-	//{
+	private void OnRestartButtonPressed()
+	{
+
+		GetTree().ReloadCurrentScene();
+
+		
 	//GetTree().ReloadCurrentScene();
-	//}
+	}
 	
 	
 }

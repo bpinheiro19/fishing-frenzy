@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfdpgjpbll6t7"]
+[gd_scene load_steps=15 format=3 uid="uid://bfdpgjpbll6t7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
@@ -9,6 +9,21 @@
 [ext_resource type="Texture2D" uid="uid://cehb5urppjfsj" path="res://art/game_over.png" id="5_fw5as"]
 [ext_resource type="PackedScene" uid="uid://bev76tri7cgvx" path="res://hud.tscn" id="5_mup65"]
 [ext_resource type="Texture2D" uid="uid://b1mm62081wabb" path="res://art/start_game.png" id="5_uqn7t"]
+[ext_resource type="Texture2D" uid="uid://y7arknh7w31" path="res://art/background_02.png" id="6_n85sw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxw3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gehmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n85sw")
+}],
+"loop": true,
+"name": &"bg_water",
+"speed": 5.0
+}]
 
 [sub_resource type="Curve2D" id="Curve2D_pk31x"]
 _data = {
@@ -38,6 +53,15 @@ BigFishScene = ExtResource("4_3wmim")
 offset_right = 480.0
 offset_bottom = 720.0
 texture = ExtResource("4_gehmt")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+visible = false
+position = Vector2(241, 359)
+sprite_frames = SubResource("SpriteFrames_uxw3h")
+animation = &"bg_water"
 
 [node name="gameoverscreen" type="TextureRect" parent="."]
 offset_right = 481.0
