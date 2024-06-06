@@ -9,7 +9,7 @@ public partial class Player : Area2D
 	public Vector2 ScreenSize; // Size of the game window.
 	
 	private int _health;
-	
+
 	[Signal]
 	public delegate void HitCheapFishEventHandler();
 	
@@ -65,7 +65,6 @@ public partial class Player : Area2D
 		{
 			animatedSprite2D.Animation = "walk";
 			animatedSprite2D.FlipV = false;
-			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
 	}
@@ -74,8 +73,6 @@ public partial class Player : Area2D
 	{
 		if (body.IsInGroup("Rock")) 
 		{
-			GD.Print("Rock");
-			
 			if (_health > 1){
 				_health--;
 				GetNode<hud>("../HUD").UpdateHealth(_health);
@@ -85,12 +82,10 @@ public partial class Player : Area2D
 			
 		} else if (body.IsInGroup("BigFish")) 
 		{
-			GD.Print("BigFish");
 			EmitSignal(SignalName.HitBigFish);
 			
 		} else if (body.IsInGroup("CheapFish")) 
 		{
-			GD.Print("CheapFish");
 			EmitSignal(SignalName.HitCheapFish);
 		}
 	}

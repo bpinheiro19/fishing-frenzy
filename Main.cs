@@ -36,7 +36,6 @@ public partial class Main : Node
 		GetTree().CallGroup("Rock", Node.MethodName.QueueFree);
 		GetTree().CallGroup("CheapFish", Node.MethodName.QueueFree);
 		GetTree().CallGroup("BigFish", Node.MethodName.QueueFree);
-		
 	}
 	
 	public void NewGame()
