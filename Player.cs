@@ -8,14 +8,24 @@ public partial class Player : Area2D
 
 	public Vector2 ScreenSize; // Size of the game window.
 	
+	private int _health;
+	
 	[Signal]
-	public delegate void HitEventHandler();
+	public delegate void HitCheapFishEventHandler();
+	
+	[Signal]
+	public delegate void HitBigFishEventHandler();
+	
+	[Signal]
+	public delegate void GameOverEventHandler();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 		Hide();
+		_health = 4;
+		GetNode<hud>("../HUD").UpdateHealth(_health);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,7 +68,6 @@ public partial class Player : Area2D
 			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
-		
 	}
 	
 	private void OnBodyEntered(Node2D body)

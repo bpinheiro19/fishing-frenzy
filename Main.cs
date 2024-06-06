@@ -59,8 +59,13 @@ public partial class Main : Node
 
 	private void OnScoreTimerTimeout()
 	{
+		//_score++;
+		//GetNode<hud>("HUD").UpdateScore(_score);
+	}
 		
-		_score++;
+	public void UpdateScore(int score)
+	{
+		_score = score;
 		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 
@@ -132,8 +137,16 @@ public partial class Main : Node
 		AddChild(rock);
 		}
 		
-		
-
+	private void OnCheapFishHit()
+	{
+		_score++;
+		GetNode<hud>("HUD").UpdateScore(_score);
+	}
+	
+	private void OnBigFishHit()
+	{
+		_score += 10;
+		GetNode<hud>("HUD").UpdateScore(_score);
+	}
 
 }
-

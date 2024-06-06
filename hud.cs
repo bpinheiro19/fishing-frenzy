@@ -3,94 +3,90 @@ using System;
 
 public partial class hud : CanvasLayer
 	{
-	// Don't forget to rebuild the project so the editor knows about the new signal.
 
 	[Signal]
 	public delegate void StartGameEventHandler();
 
-
 	public void ShowMessage(string text)
 	{
-	var message = GetNode<Label>("Message");
-	message.Text = text;
-	message.Show();
+		var message = GetNode<Label>("Message");
+		message.Text = text;
+		message.Show();
 
-	GetNode<Timer>("MessageTimer").Start();
+		GetNode<Timer>("MessageTimer").Start();
 	}
 
 	async public void ShowGameOver()
 	{
-	ShowMessage("Perdeste");
+		ShowMessage("Perdeste");
+		GetNode<ProgressBar>("HealthBar").Hide();
 
-	var messageTimer = GetNode<Timer>("MessageTimer");
-	await ToSignal(messageTimer, Timer.SignalName.Timeout);
+		var messageTimer = GetNode<Timer>("MessageTimer");
+		await ToSignal(messageTimer, Timer.SignalName.Timeout);
 
-	var message = GetNode<Label>("Message");
-	message.Text = "Seu pato!";
-	message.Show();
+		var message = GetNode<Label>("Message");
+		message.Text = "Seu pato!";
+		message.Show();
 
-	await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-	GetNode<Button>("StartButton").Show();
-	GetNode<Button>("QuitButton").Show();
-	GetNode<Button>("PauseButton").Hide();
+		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
+		GetNode<Button>("StartButton").Show();
+		GetNode<Button>("QuitButton").Show();
+		GetNode<Button>("PauseButton").Hide();
 	}
-
 
 	public void UpdateScore(int score)
 	{
-	GetNode<Label>("ScoreLabel").Text = score.ToString();
+		GetNode<Label>("ScoreLabel").Text = score.ToString();
 	}
-
+	
+	public void UpdateHealth(int health)
+	{
+		GetNode<ProgressBar>("HealthBar").Value = health;
+	}
 
 	private void OnStartButtonPressed()
 	{
-	GetNode<Button>("StartButton").Hide();
-	GetNode<Label>("Message").Hide();
-	GetNode<Button>("QuitButton").Hide();
-	GetNode<Button>("PauseButton").Show();
-	
-	EmitSignal(SignalName.StartGame);
-	GetTree().Paused = false;
+		GetNode<Button>("StartButton").Hide();
+		GetNode<Label>("Message").Hide();
+		GetNode<Button>("QuitButton").Hide();
+		GetNode<Button>("PauseButton").Show();
+		
+		EmitSignal(SignalName.StartGame);
+		GetTree().Paused = false;
 	}
 
 	private void OnMessageTimerTimeout()
 	{
-	GetNode<Label>("Message").Hide();
+		GetNode<Label>("Message").Hide();
 	}
 
 	private void OnQuitButtonPressed()
 	{
 		GetTree().Quit();
-	// Replace with function body.
-	}
-
-	public void OnPauseButtonPressed()
-	{
-	//	GetNode<Label>("Paused").Show();
-	GetNode<Button>("ResumeButton").Show();
-	GetNode<Button>("RestartButton").Show();
-	GetNode<Button>("QuitButton").Show();
-	GetNode<Button>("PauseButton").Hide();
-		GetTree().Paused = true;
-		
-	// Replace with function body.
-	}
-	public void OnResumeButtonPressed()
-	{
-	GetNode<Button>("ResumeButton").Hide();
-	GetNode<Button>("PauseButton").Show();
-	GetNode<Button>("RestartButton").Hide();
-	GetNode<Button>("QuitButton").Hide();
-		GetTree().Paused = false;
-	}
-	private void OnRestartButtonPressed()
-	{
-
-		GetTree().ReloadCurrentScene();
-
-		
-	//GetTree().ReloadCurrentScene();
 	}
 	
+	public void OnPauseButtonPressed()
+	{
+		//GetNode<Label>("Paused").Show();
+		GetNode<Button>("ResumeButton").Show();
+		GetNode<Button>("RestartButton").Show();
+		GetNode<Button>("QuitButton").Show();
+		GetNode<Button>("PauseButton").Hide();
+		GetTree().Paused = true;
+	}
+	
+	public void OnResumeButtonPressed()
+	{
+		GetNode<Button>("ResumeButton").Hide();
+		GetNode<Button>("PauseButton").Show();
+		GetNode<Button>("RestartButton").Hide();
+		GetNode<Button>("QuitButton").Hide();
+		GetTree().Paused = false;
+	}
+	
+	private void OnRestartButtonPressed()
+	{
+		GetTree().ReloadCurrentScene();
+	}
 	
 }
