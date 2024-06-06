@@ -16,7 +16,6 @@ public partial class Main : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +31,12 @@ public partial class Main : Node
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
 		GetNode<TextureRect>("gameoverscreen").Show();
+		
+		GetTree().CallGroup("Player", Node.MethodName.QueueFree);
+		GetTree().CallGroup("Rock", Node.MethodName.QueueFree);
+		GetTree().CallGroup("CheapFish", Node.MethodName.QueueFree);
+		GetTree().CallGroup("BigFish", Node.MethodName.QueueFree);
+		
 	}
 	
 	public void NewGame()
@@ -62,7 +67,7 @@ public partial class Main : Node
 		//_score++;
 		//GetNode<hud>("HUD").UpdateScore(_score);
 	}
-		
+	
 	public void UpdateScore(int score)
 	{
 		_score = score;
@@ -71,7 +76,7 @@ public partial class Main : Node
 
 	private void OnBigFishTimerTimeout()
 	{
-// Create a new instance of the Mob scene.
+		// Create a new instance of the Mob scene.
 		BigFish bigfish = BigFishScene.Instantiate<BigFish>();
 
 		// Choose a random location on Path2D.
@@ -80,7 +85,6 @@ public partial class Main : Node
 
 		// Set the mob's position to a random location.
 		bigfish.Position = BigFishSpawn.Position;
-
 
 		// Choose the velocity.
 		var velocity = new Vector2(0, 150);
@@ -92,7 +96,7 @@ public partial class Main : Node
 
 	private void OnFishTimerTimeout()
 	{
-// Create a new instance of the Mob scene.
+		// Create a new instance of the Mob scene.
 		CheapFish cheapfish = CheapFishScene.Instantiate<CheapFish>();
 
 		// Choose a random location on Path2D.
@@ -101,7 +105,6 @@ public partial class Main : Node
 
 		// Set the mob's position to a random location.
 		cheapfish.Position = CheapFishSpawn.Position;
-
 
 		// Choose the velocity.
 		var velocity = new Vector2(0, 150);
@@ -113,30 +116,24 @@ public partial class Main : Node
 
 	private void OnRockTimerTimeout()
 	{
-		// Note: Normally it is best to use explicit types rather than the `var`
-		// keyword. However, var is acceptable to use here because the types are
-		// obviously Mob and PathFollow2D, since they appear later on the line.
-
 		// Create a new instance of the Mob scene.
 		Rock rock = RockScene.Instantiate<Rock>();
 
 		// Choose a random location on Path2D.
-		//var rockSpawnLocation = GetNode<PathFollow2D>("Rockpath2D/PathFollow2D");
 		var rockSpawnLocation = GetNode<PathFollow2D>("RockPath/RockSpawnLocation");
 		rockSpawnLocation.ProgressRatio = GD.Randf();
 
 		// Set the mob's position to a random location.
 		rock.Position = rockSpawnLocation.Position;
-
-
+		
 		// Choose the velocity.
 		var velocity = new Vector2(0, 150);
 		rock.LinearVelocity = velocity;
 
 		// Spawn the mob by adding it to the Main scene.
 		AddChild(rock);
-		}
-		
+	}
+	
 	private void OnCheapFishHit()
 	{
 		_score++;
