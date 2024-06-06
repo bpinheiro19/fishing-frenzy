@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://1li01bmppl6k"]
+[gd_scene load_steps=3 format=3 uid="uid://vimkl7nsw0h2"]
 
 [ext_resource type="Script" path="res://game_over_screen.cs" id="1_qlo16"]
 [ext_resource type="Texture2D" uid="uid://cehb5urppjfsj" path="res://art/game_over.png" id="1_v5n8b"]

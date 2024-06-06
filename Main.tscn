@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Main.cs" id="1_4oa2v"]
 [ext_resource type="PackedScene" uid="uid://bptgycrwxq1rb" path="res://Player.tscn" id="1_273nw"]
 [ext_resource type="PackedScene" uid="uid://bc2f73op0uncl" path="res://Rock.tscn" id="2_r80ej"]
-[ext_resource type="PackedScene" uid="uid://w5jje1iaqrmj" path="res://CheapFish.tscn" id="3_6bbgp"]
-[ext_resource type="PackedScene" uid="uid://doiwtivp7alye" path="res://BigFish.tscn" id="4_3wmim"]
+[ext_resource type="PackedScene" uid="uid://dlx62yv46ha13" path="res://CheapFish.tscn" id="3_6bbgp"]
+[ext_resource type="PackedScene" uid="uid://ddnwht5uip006" path="res://BigFish.tscn" id="4_3wmim"]
 [ext_resource type="Texture2D" uid="uid://ca4ux7p0ys6pv" path="res://art/background_01.png" id="4_gehmt"]
 [ext_resource type="Texture2D" uid="uid://cehb5urppjfsj" path="res://art/game_over.png" id="5_fw5as"]
-[ext_resource type="PackedScene" uid="uid://bev76tri7cgvx" path="res://hud.tscn" id="5_mup65"]
+[ext_resource type="PackedScene" uid="uid://b0w1sueppivs0" path="res://hud.tscn" id="5_mup65"]
 [ext_resource type="Texture2D" uid="uid://b1mm62081wabb" path="res://art/start_game.png" id="5_uqn7t"]
 [ext_resource type="Texture2D" uid="uid://y7arknh7w31" path="res://art/background_02.png" id="6_n85sw"]
 
@@ -114,7 +114,9 @@ curve = SubResource("Curve2D_wd1uu")
 [node name="BigFishSpawn" type="PathFollow2D" parent="BigFish"]
 position = Vector2(130, 1)
 
-[connection signal="Hit" from="Player" to="." method="GameOver"]
+[connection signal="GameOver" from="Player" to="." method="GameOver"]
+[connection signal="HitBigFish" from="Player" to="." method="OnBigFishHit"]
+[connection signal="HitCheapFish" from="Player" to="." method="OnCheapFishHit"]
 [connection signal="timeout" from="RockTimer" to="." method="OnRockTimerTimeout"]
 [connection signal="timeout" from="FishTimer" to="." method="OnFishTimerTimeout"]
 [connection signal="timeout" from="BigFishTimer" to="." method="OnBigFishTimerTimeout"]

@@ -18,7 +18,7 @@ animations = [{
 radius = 17.0
 height = 38.0
 
-[node name="Rock" type="RigidBody2D"]
+[node name="Rock" type="RigidBody2D" groups=["Rock"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_lhlnd")

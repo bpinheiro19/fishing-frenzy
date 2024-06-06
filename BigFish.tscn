@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://doiwtivp7alye"]
+[gd_scene load_steps=5 format=3 uid="uid://ddnwht5uip006"]
 
 [ext_resource type="Script" path="res://BigFish.cs" id="1_o44jv"]
 [ext_resource type="Texture2D" uid="uid://qejwd447f5j5" path="res://art/fish_02.png" id="2_or2u1"]
@@ -17,7 +17,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uem3p"]
 size = Vector2(43.3628, 49)
 
-[node name="BigFish" type="RigidBody2D"]
+[node name="BigFish" type="RigidBody2D" groups=["BigFish"]]
 collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0

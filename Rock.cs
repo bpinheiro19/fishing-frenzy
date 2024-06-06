@@ -11,7 +11,6 @@ public partial class Rock : RigidBody2D
 		animatedSprite2D.Play();
 	}
 
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

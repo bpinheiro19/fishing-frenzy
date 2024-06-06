@@ -34,7 +34,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6f8no"]
 size = Vector2(42, 74)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=["Player"]]
+collision_mask = 3
 script = ExtResource("1_l2wcf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
