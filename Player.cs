@@ -4,7 +4,7 @@ using System;
 public partial class Player : Area2D
 {
 	[Export]
-	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
+	public int Speed { get; set; } = 300; // How fast the player will move (pixels/sec).
 
 	public Vector2 ScreenSize; // Size of the game window.
 	
@@ -55,11 +55,15 @@ public partial class Player : Area2D
 			animatedSprite2D.Stop();
 		}
 
-		Position += velocity * (float)delta;
+		var tempPosition = Position + (velocity * (float)delta);
+
+		if (tempPosition.X < 400 && tempPosition.X > 90)
+		{
 		Position = new Vector2(
-			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+				x: Mathf.Clamp(tempPosition.X, 0, ScreenSize.X),
+				y: Mathf.Clamp(tempPosition.Y, 0, ScreenSize.Y)
 		);
+		}
 
 		if (velocity.X != 0)
 		{
