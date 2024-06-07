@@ -76,6 +76,7 @@ texture = ExtResource("5_uqn7t")
 [node name="Player" parent="." instance=ExtResource("1_273nw")]
 
 [node name="RockTimer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="FishTimer" type="Timer" parent="."]
 wait_time = 1.5
@@ -83,7 +84,8 @@ wait_time = 1.5
 [node name="BigFishTimer" type="Timer" parent="."]
 wait_time = 10.0
 
-[node name="ScoreTimer" type="Timer" parent="."]
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -120,6 +122,6 @@ position = Vector2(130, 1)
 [connection signal="timeout" from="RockTimer" to="." method="OnRockTimerTimeout"]
 [connection signal="timeout" from="FishTimer" to="." method="OnFishTimerTimeout"]
 [connection signal="timeout" from="BigFishTimer" to="." method="OnBigFishTimerTimeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="OnLevelTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
 [connection signal="StartGame" from="HUD" to="." method="NewGame"]

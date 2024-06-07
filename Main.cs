@@ -11,7 +11,13 @@ public partial class Main : Node
 	[Export]
 	public PackedScene BigFishScene { get; set; }
 
+	private int _rockVelocity;
+	private int _cheapFishVelocity;
+	private int _bigFishVelocity;
+	
 	private int _score;
+	
+	private int _level;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,7 +34,7 @@ public partial class Main : Node
 		GetNode<Timer>("RockTimer").Stop();
 		GetNode<Timer>("FishTimer").Stop();
 		GetNode<Timer>("BigFishTimer").Stop();
-		GetNode<Timer>("ScoreTimer").Stop();
+		GetNode<Timer>("LevelTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
 		GetNode<TextureRect>("gameoverscreen").Show();
 		
@@ -41,6 +47,11 @@ public partial class Main : Node
 	public void NewGame()
 	{
 		_score = 0;
+		_level = 1;
+		
+		_rockVelocity = 200;
+		_cheapFishVelocity = 150;
+		_bigFishVelocity = 300;
 		
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
@@ -56,21 +67,9 @@ public partial class Main : Node
 	private void OnStartTimerTimeout()
 	{
 		GetNode<Timer>("RockTimer").Start();
-		GetNode<Timer>("ScoreTimer").Start();
+		GetNode<Timer>("LevelTimer").Start();
 		GetNode<Timer>("FishTimer").Start();
 		GetNode<Timer>("BigFishTimer").Start();
-	}
-
-	private void OnScoreTimerTimeout()
-	{
-		//_score++;
-		//GetNode<hud>("HUD").UpdateScore(_score);
-	}
-	
-	public void UpdateScore(int score)
-	{
-		_score = score;
-		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 
 	private void OnBigFishTimerTimeout()
@@ -86,7 +85,7 @@ public partial class Main : Node
 		bigfish.Position = BigFishSpawn.Position;
 
 		// Choose the velocity.
-		var velocity = new Vector2(0, 150);
+		var velocity = new Vector2(0, _bigFishVelocity);
 		bigfish.LinearVelocity = velocity;
 
 		// Spawn the mob by adding it to the Main scene.
@@ -106,7 +105,7 @@ public partial class Main : Node
 		cheapfish.Position = CheapFishSpawn.Position;
 
 		// Choose the velocity.
-		var velocity = new Vector2(0, 150);
+		var velocity = new Vector2(0, _cheapFishVelocity);
 		cheapfish.LinearVelocity = velocity;
 
 		// Spawn the mob by adding it to the Main scene.
@@ -126,22 +125,56 @@ public partial class Main : Node
 		rock.Position = rockSpawnLocation.Position;
 		
 		// Choose the velocity.
-		var velocity = new Vector2(0, 150);
+		var velocity = new Vector2(0, _rockVelocity);
 		rock.LinearVelocity = velocity;
 
 		// Spawn the mob by adding it to the Main scene.
 		AddChild(rock);
 	}
 	
+	public void OnLevelTimerTimeout()
+	{
+		_level++;
+		GetNode<hud>("HUD").UpdateLevel(_level);
+		_rockVelocity += 50;
+		_cheapFishVelocity += 50;
+		_bigFishVelocity += 50;
+		
+		if (GetNode<Timer>("RockTimer").WaitTime > 0.3){
+			GetNode<Timer>("RockTimer").WaitTime -= 0.3;
+		} else {
+			GetNode<Timer>("FishTimer").WaitTime -= 0.1;
+		}
+		
+		if (GetNode<Timer>("FishTimer").WaitTime > 0.3){
+			GetNode<Timer>("FishTimer").WaitTime -= 0.3;
+		} else {
+			GetNode<Timer>("FishTimer").WaitTime -= 0.1;
+		}
+		
+		if (GetNode<Timer>("BigFishTimer").WaitTime > 0.3){
+			GetNode<Timer>("BigFishTimer").WaitTime -= 0.3;
+		} else {
+			GetNode<Timer>("BigFishTimer").WaitTime -= 0.1;
+		}
+		
+		
+		
+		
+		GD.Print(GetNode<Timer>("RockTimer").WaitTime);
+		GD.Print(GetNode<Timer>("FishTimer").WaitTime);
+			GD.Print(GetNode<Timer>("BigFishTimer").WaitTime);
+	}
+	
 	private void OnCheapFishHit()
 	{
-		_score++;
+		_score+=5;
 		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 	
 	private void OnBigFishHit()
 	{
-		_score += 10;
+		_score += 100;
 		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 

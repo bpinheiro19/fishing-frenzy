@@ -32,7 +32,7 @@ public partial class Player : Area2D
 	public override void _Process(double delta)
 	{
 		var velocity = Vector2.Zero; // The player's movement vector.
-
+		
 		if (Input.IsActionPressed("move_right"))
 		{
 			velocity.X += 1;
@@ -59,10 +59,10 @@ public partial class Player : Area2D
 
 		if (tempPosition.X < 400 && tempPosition.X > 90)
 		{
-		Position = new Vector2(
+			Position = new Vector2(
 				x: Mathf.Clamp(tempPosition.X, 0, ScreenSize.X),
 				y: Mathf.Clamp(tempPosition.Y, 0, ScreenSize.Y)
-		);
+			);
 		}
 
 		if (velocity.X != 0)
@@ -77,7 +77,9 @@ public partial class Player : Area2D
 	{
 		if (body.IsInGroup("Rock")) 
 		{
+			body.QueueFree();
 			if (_health > 1){
+				body.QueueFree();
 				_health--;
 				GetNode<hud>("../HUD").UpdateHealth(_health);
 			} else {
@@ -86,10 +88,12 @@ public partial class Player : Area2D
 			
 		} else if (body.IsInGroup("BigFish")) 
 		{
+			body.QueueFree();
 			EmitSignal(SignalName.HitBigFish);
 			
 		} else if (body.IsInGroup("CheapFish")) 
 		{
+			body.QueueFree();
 			EmitSignal(SignalName.HitCheapFish);
 		}
 	}
