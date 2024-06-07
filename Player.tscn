@@ -32,7 +32,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6f8no"]
-size = Vector2(42, 74)
+size = Vector2(42, 54)
 
 [node name="Player" type="Area2D" groups=["Player"]]
 collision_mask = 3
@@ -43,7 +43,7 @@ sprite_frames = SubResource("SpriteFrames_xrsof")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 10)
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_6f8no")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
