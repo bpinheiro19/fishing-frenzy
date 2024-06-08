@@ -4,11 +4,13 @@ using System;
 public partial class Player : Area2D
 {
 	[Export]
-	public int Speed { get; set; } = 300; // How fast the player will move (pixels/sec).
+	public int Speed { get; set; } = 300;
 
-	public Vector2 ScreenSize; // Size of the game window.
+	public Vector2 ScreenSize;
 	
 	private int _health;
+	
+	private const int MAX_HEALTH = 4;
 
 	[Signal]
 	public delegate void HitCheapFishEventHandler();
@@ -19,19 +21,17 @@ public partial class Player : Area2D
 	[Signal]
 	public delegate void GameOverEventHandler();
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 		Hide();
-		_health = 4;
+		_health = MAX_HEALTH;
 		GetNode<hud>("../HUD").UpdateHealth(_health);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		var velocity = Vector2.Zero; // The player's movement vector.
+		var velocity = Vector2.Zero;
 		
 		if (Input.IsActionPressed("move_right"))
 		{
@@ -103,6 +103,11 @@ public partial class Player : Area2D
 		Position = position;
 		Show();
 		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+	}
+	
+	public void ResetHealth(){
+		_health = MAX_HEALTH;
+		GetNode<hud>("../HUD").UpdateHealth(_health);
 	}
 
 }

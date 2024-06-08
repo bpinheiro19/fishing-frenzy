@@ -85,11 +85,7 @@ wait_time = 1.5
 wait_time = 10.0
 
 [node name="LevelTimer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+wait_time = 10.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(242, 640)
@@ -123,5 +119,4 @@ position = Vector2(130, 1)
 [connection signal="timeout" from="FishTimer" to="." method="OnFishTimerTimeout"]
 [connection signal="timeout" from="BigFishTimer" to="." method="OnBigFishTimerTimeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="OnLevelTimerTimeout"]
-[connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
 [connection signal="StartGame" from="HUD" to="." method="NewGame"]

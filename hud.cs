@@ -41,7 +41,6 @@ public partial class hud : CanvasLayer
 	
 	public void UpdateLevel(int level)
 	{
-		GD.Print(level);
 		GetNode<Label>("LevelValue").Text = level.ToString();
 	}
 	
@@ -79,7 +78,6 @@ public partial class hud : CanvasLayer
 	
 	public void OnPauseButtonPressed()
 	{
-		//GetNode<Label>("Paused").Show();
 		GetNode<Button>("ResumeButton").Show();
 		GetNode<Button>("RestartButton").Show();
 		GetNode<Button>("QuitButton").Show();
