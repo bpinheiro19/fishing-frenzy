@@ -22,6 +22,7 @@ public partial class Main : Node
 	
 	public override void _Ready()
 	{
+		GetNode<hud>("HUD").UpdateHighScore();
 	}
 
 	public override void _Process(double delta)
@@ -30,6 +31,8 @@ public partial class Main : Node
 	
 	private void GameOver()
 	{
+		UpdateHighScore();
+		
 		GetNode<Timer>("RockTimer").Stop();
 		GetNode<Timer>("FishTimer").Stop();
 		GetNode<Timer>("BigFishTimer").Stop();
@@ -145,6 +148,15 @@ public partial class Main : Node
 	{
 		_score += 100;
 		GetNode<hud>("HUD").UpdateScore(_score);
+	}
+	
+	private void UpdateHighScore()
+	{
+		var highScore = SaveData.Load();
+		if (_score > highScore)
+		{
+			SaveData.Save(_score);
+		}
 	}
 
 }

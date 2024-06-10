@@ -48,7 +48,12 @@ public partial class hud : CanvasLayer
 	{
 		GetNode<ProgressBar>("HealthBar").Value = health;
 	}
-
+	
+	public void UpdateHighScore()
+	{
+		GetNode<Label>("HighScoreValue").Text = SaveData.Load().ToString();
+	}
+	
 	private void OnStartButtonPressed()
 	{
 		GetNode<Button>("StartButton").Hide();
@@ -58,10 +63,12 @@ public partial class hud : CanvasLayer
 		
 		GetNode<Label>("Score").Show();
 		GetNode<Label>("ScoreValue").Show();
+		GetNode<Label>("HighScore").Hide();
+		GetNode<Label>("HighScoreValue").Hide();
 		GetNode<Label>("Level").Show();
 		GetNode<Label>("LevelValue").Show();
 		GetNode<ProgressBar>("HealthBar").Show();
-		
+
 		EmitSignal(SignalName.StartGame);
 		GetTree().Paused = false;
 	}
